@@ -7,5 +7,5 @@ public interface IReportQueryService
 {
     Task<Report?> Handle(GetReportByIdQuery query);
     Task<IEnumerable<Report>> Handle(GetAllReportsQuery query);
-    Task<Report?> Handle(GetReportByUserIdQuery query);
+    Task<IEnumerable<Report>> Handle(GetReportByUserIdQuery query);
 }
