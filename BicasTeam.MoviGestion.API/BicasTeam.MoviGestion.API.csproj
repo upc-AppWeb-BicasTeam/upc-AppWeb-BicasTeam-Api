@@ -20,11 +20,6 @@
     <ItemGroup>
       <Folder Include="Alerts\Application\Internal\CommandServices\" />
       <Folder Include="Alerts\Application\Internal\QueryServices\" />
-      <Folder Include="Alerts\Domain\Model\Aggregates\" />
-      <Folder Include="Alerts\Domain\Model\Commands\" />
-      <Folder Include="Alerts\Domain\Model\Queries\" />
-      <Folder Include="Alerts\Domain\Repositories\" />
-      <Folder Include="Alerts\Domain\Services\" />
       <Folder Include="Alerts\Infrastructure\Persistence\EFC\Repositories\" />
       <Folder Include="Alerts\Interfaces\REST\Resources\" />
       <Folder Include="Alerts\Interfaces\REST\Transform\" />

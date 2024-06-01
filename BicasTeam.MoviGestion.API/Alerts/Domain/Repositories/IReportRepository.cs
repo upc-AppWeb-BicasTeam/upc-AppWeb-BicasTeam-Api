@@ -1,6 +1,10 @@
-﻿namespace BicasTeam.MoviGestion.API.Alerts.Domain.Repositories;
+﻿using BicasTeam.MoviGestion.API.Alerts.Domain.Model.Aggregates;
+using BicasTeam.MoviGestion.API.Shared.Domain.Repositories;
 
-public interface IReportRepository
+namespace BicasTeam.MoviGestion.API.Alerts.Domain.Repositories;
+
+public interface IReportRepository : IBaseRepository<Report>
 {
-    
+    Task<IEnumerable<Report>> FindByUserIdAsync(int userId);
+    Task<IEnumerable<Report>> FindAll();
 }

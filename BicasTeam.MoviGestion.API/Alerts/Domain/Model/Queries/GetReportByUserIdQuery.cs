@@ -1,3 +1,3 @@
 ﻿namespace BicasTeam.MoviGestion.API.Alerts.Domain.Model.Queries;
 
-public record GetReportByUserIdQuery();
+public record GetReportByUserIdQuery(int UserId);
