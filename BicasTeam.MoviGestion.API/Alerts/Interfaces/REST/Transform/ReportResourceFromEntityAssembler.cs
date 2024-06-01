@@ -5,5 +5,5 @@ namespace BicasTeam.MoviGestion.API.Alerts.Interfaces.REST.Transform;
 
 public class ReportResourceFromEntityAssembler
 {
-    public static ReportResource ToResourceFromEntity(Report entity) => new ReportResource(entity.Id, entity.Type, entity.Description, entity.UserId);
+    public static ReportResource ToResourceFromEntity(Report entity) => new ReportResource(entity.Id, entity.Type, entity.Description, entity.UserId, entity.CreatedAt);
 }
