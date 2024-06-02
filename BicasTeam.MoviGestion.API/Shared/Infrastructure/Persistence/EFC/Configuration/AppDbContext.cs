@@ -19,12 +19,11 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         // Shipment Context
         /*
         builder.Entity<Shipment>().HasKey(f => f.Id);
-        builder.Entity<Report>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<Report>().Property(f => f.Type).IsRequired();
-        builder.Entity<Report>().Property(f => f.UserId).IsRequired();
-        builder.Entity<Report>().Property(f => f.Description).IsRequired();
+        builder.Entity<Shipment>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Shipment>().Property(f => f.Type).IsRequired();
+        builder.Entity<Shipment>().Property(f => f.UserId).IsRequired();
+        builder.Entity<Shipment>().Property(f => f.Description).IsRequired();
         */
-        
         // Apply SnakeCase Naming Convention
         builder.UseSnakeCaseWithPluralizedTableNamingConvention();
     }
