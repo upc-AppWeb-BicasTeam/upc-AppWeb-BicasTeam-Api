@@ -18,12 +18,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Vehicles\Application\Internal\CommandServices\" />
-      <Folder Include="Vehicles\Application\Internal\QueryServices\" />
-      <Folder Include="Vehicles\Domain\Repositories\" />
-      <Folder Include="Vehicles\Domain\Services\" />
-      <Folder Include="Vehicles\Infrastructure\Persistence\EFC\Repositories\" />
-      <Folder Include="Vehicles\Interfaces\REST\Resources\" />
       <Folder Include="Vehicles\Interfaces\REST\Transform\" />
     </ItemGroup>
 
