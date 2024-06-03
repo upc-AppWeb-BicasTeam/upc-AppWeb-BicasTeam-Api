@@ -31,5 +31,5 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         // Apply SnakeCase Naming Convention
         builder.UseSnakeCaseWithPluralizedTableNamingConvention();
     }
-    public DbSet<Shipment> Shipments { get; set; }
+    
 }
