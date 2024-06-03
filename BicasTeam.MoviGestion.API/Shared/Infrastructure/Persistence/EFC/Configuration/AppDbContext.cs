@@ -1,4 +1,5 @@
-﻿using BicasTeam.MoviGestion.API.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
+﻿using BicasTeam.MoviGestion.API.Profiles.Domain.Model.Aggregates;
+using BicasTeam.MoviGestion.API.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,14 +17,16 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
     {
         base.OnModelCreating(builder);
         
-        // Profiles Context
-        /*
-        builder.Entity<Vehicle>().HasKey(f => f.Id);
-        builder.Entity<Vehicle>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<Vehicle>().Property(f => f.LicensePlate).IsRequired();
-        builder.Entity<Vehicle>().Property(f => f.Model).IsRequired();
-        builder.Entity<Vehicle>().Property(f => f.SerialNumber).IsRequired();
-        */
+        // User Context
+
+        builder.Entity<User>().HasKey(f => f.Id);
+        builder.Entity<User>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<User>().Property(f => f.Name).IsRequired();
+        builder.Entity<User>().Property(f => f.LastName).IsRequired();
+        builder.Entity<User>().Property(f => f.Email).IsRequired();
+        builder.Entity<User>().Property(f => f.Password).IsRequired();
+        builder.Entity<User>().Property(f => f.Type).IsRequired();
+
         
         // Apply SnakeCase Naming Convention
         builder.UseSnakeCaseWithPluralizedTableNamingConvention();
