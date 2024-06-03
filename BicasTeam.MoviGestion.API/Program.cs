@@ -1,3 +1,4 @@
+using ACME.LearningCenterPlatform.API.profiles_managment.Domain.Repositories;
 using BicasTeam.MoviGestion.API.Profiles.Application.Internal.CommandServices;
 using BicasTeam.MoviGestion.API.Profiles.Application.Internal.QueryServices;
 using BicasTeam.MoviGestion.API.Profiles.Domain.Repositories;
@@ -66,6 +67,13 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserCommandService, UserCommandService>();
 builder.Services.AddScoped<IUserQueryService, UserQueryService>();
+
+// Shipment Bounded Context Injection Configuration
+builder.Services.AddScoped<IShipmentCommandService, ShipmentCommandService>();
+builder.Services.AddScoped<IShipmentRepository, ShipmentRepository>();
+builder.Services.AddScoped<IShipmentQueryService, ShipmentQueryService>();
+
+
 
 var app = builder.Build();
 
