@@ -1,5 +1,4 @@
 ﻿using BicasTeam.MoviGestion.API.Profiles.Domain.Model.Commands;
-using BicasTeam.MoviGestion.API.Profiles.Domain.Model.ValueObjects;
 
 namespace BicasTeam.MoviGestion.API.Profiles.Domain.Model.Aggregates;
 
@@ -10,7 +9,7 @@ public class User
     public string LastName { get; private set; }
     public string Email { get; set; }
     public string Password { get; set; }
-    public EUserType Type { get; private set; }
+    public string Type { get; private set; }
 
     protected User()
     {
@@ -19,7 +18,7 @@ public class User
         LastName = string.Empty;
         Email = string.Empty;
         Password = string.Empty;
-        Type = EUserType.businessman;
+        Type = string.Empty;
     }
 
     public User(CreateUserCommand command)
