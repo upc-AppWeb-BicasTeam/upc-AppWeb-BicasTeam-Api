@@ -18,8 +18,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Profiles\Application\Internal\CommandServices\" />
-      <Folder Include="Profiles\Application\Internal\QueryServices\" />
       <Folder Include="Profiles\Interfaces\REST\Resources\" />
       <Folder Include="Profiles\Interfaces\REST\Transform\" />
     </ItemGroup>
