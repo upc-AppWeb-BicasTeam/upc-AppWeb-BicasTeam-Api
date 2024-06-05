@@ -1,7 +1,8 @@
 ﻿using BicasTeam.MoviGestion.API.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using BicasTeam.MoviGestion.API.Vehicles.Domain.Model.Aggregates;
-
 ﻿using BicasTeam.MoviGestion.API.Alerts.Domain.Model.Aggregates;
+using BicasTeam.MoviGestion.API.Shipments.Domain.Model.Aggregates;
+
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,7 +21,6 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         base.OnModelCreating(builder);
         
         // Vehicle Context
-        
         builder.Entity<Vehicle>().HasKey(f => f.Id);
         builder.Entity<Vehicle>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Vehicle>().Property(f => f.LicensePlate).IsRequired();
@@ -33,6 +33,14 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Report>().Property(f => f.Type).IsRequired();
         builder.Entity<Report>().Property(f => f.UserId).IsRequired();
         builder.Entity<Report>().Property(f => f.Description).IsRequired();
+        
+        // Shipment Context
+        builder.Entity<Shipment>().HasKey(f => f.Id);
+        builder.Entity<Shipment>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Shipment>().Property(f => f.UserId).IsRequired();
+        builder.Entity<Shipment>().Property(f => f.Destiny).IsRequired();
+        builder.Entity<Shipment>().Property(f => f.Description).IsRequired();
+        builder.Entity<Shipment>().Property(f => f.Status).IsRequired();
         
         
         // Apply SnakeCase Naming Convention

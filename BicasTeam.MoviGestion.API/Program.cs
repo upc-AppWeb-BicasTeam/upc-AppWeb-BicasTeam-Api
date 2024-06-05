@@ -15,6 +15,12 @@ using BicasTeam.MoviGestion.API.Vehicles.Domain.Repositories;
 using BicasTeam.MoviGestion.API.Vehicles.Domain.Services;
 using BicasTeam.MoviGestion.API.Vehicles.Infrastructure.Persistence.EFC.Repositories;
 
+using BicasTeam.MoviGestion.API.Shipments.Application.Internal.CommandServices;
+using BicasTeam.MoviGestion.API.Shipments.Application.Internal.QueryServices;
+using BicasTeam.MoviGestion.API.Shipments.Domain.Repositories;
+using BicasTeam.MoviGestion.API.Shipments.Domain.Services;
+using BicasTeam.MoviGestion.API.Shipments.Infrastructure.Persistence.EFC.Repositories;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -69,20 +75,23 @@ builder.Services.AddSwaggerGen(
 // Shared Bounded Context Injection Configuration
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-
+// Vehicles Bounded Context Injection Configuration
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 builder.Services.AddScoped<IVehicleCommandService, VehicleCommandService>();
 builder.Services.AddScoped<IVehicleQueryService, VehicleQueryService>();
 
-var app = builder.Build();
-
-
+// Reports Bounded Context Injection Configuration
 builder.Services.AddScoped<IReportRepository, ReportRepository>();
 builder.Services.AddScoped<IReportCommandService, ReportCommandService>();
 builder.Services.AddScoped<IReportQueryService, ReportQueryService>();
 
-var app = builder.Build();
+// Shipments Bounded Context Injection Configuration
+builder.Services.AddScoped<IShipmentRepository, ShipmentRepository>();
+builder.Services.AddScoped<IShipmentCommandService, ShipmentCommandService>();
+builder.Services.AddScoped<IShipmentQueryService, ShipmentQueryService>();
 
+
+var app = builder.Build();
 
 // Verify Database Objects are Created
 using (var scope = app.Services.CreateScope())
