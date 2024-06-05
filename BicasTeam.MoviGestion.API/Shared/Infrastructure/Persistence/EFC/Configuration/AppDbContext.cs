@@ -1,5 +1,7 @@
 ﻿using BicasTeam.MoviGestion.API.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using BicasTeam.MoviGestion.API.Vehicles.Domain.Model.Aggregates;
+
+﻿using BicasTeam.MoviGestion.API.Alerts.Domain.Model.Aggregates;
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +26,13 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Vehicle>().Property(f => f.LicensePlate).IsRequired();
         builder.Entity<Vehicle>().Property(f => f.Model).IsRequired();
         builder.Entity<Vehicle>().Property(f => f.SerialNumber).IsRequired();
+        
+        // Category Context
+        builder.Entity<Report>().HasKey(f => f.Id);
+        builder.Entity<Report>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Report>().Property(f => f.Type).IsRequired();
+        builder.Entity<Report>().Property(f => f.UserId).IsRequired();
+        builder.Entity<Report>().Property(f => f.Description).IsRequired();
         
         
         // Apply SnakeCase Naming Convention
