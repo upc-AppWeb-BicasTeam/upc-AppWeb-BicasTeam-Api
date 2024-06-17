@@ -3,7 +3,7 @@ using BicasTeam.MoviGestion.API.Alerts.Application.Internal.QueryServices;
 using BicasTeam.MoviGestion.API.Alerts.Domain.Repositories;
 using BicasTeam.MoviGestion.API.Alerts.Domain.Services;
 using BicasTeam.MoviGestion.API.Alerts.Infrastructure.Persistence.EFC.Repositories;
-
+using BicasTeam.MoviGestion.API.IAM.Infrastructure.Pipeline.Middleware.Extensions;
 using BicasTeam.MoviGestion.API.Profiles.Application.Internal.CommandServices;
 using BicasTeam.MoviGestion.API.Profiles.Application.Internal.QueryServices;
 using BicasTeam.MoviGestion.API.Profiles.Domain.Repositories;
