@@ -1,4 +1,4 @@
-﻿using BicasTeam.MoviGestion.API.Shared.Domain.Repositories;
+using BicasTeam.MoviGestion.API.Shared.Domain.Repositories;
 using BicasTeam.MoviGestion.API.Shared.Infrastructure.Persistence.EFC.Configuration;
 using Microsoft.EntityFrameworkCore;
 
