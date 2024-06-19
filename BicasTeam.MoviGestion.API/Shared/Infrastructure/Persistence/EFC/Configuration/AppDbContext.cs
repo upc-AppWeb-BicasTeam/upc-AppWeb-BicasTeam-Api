@@ -44,14 +44,15 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Shipment>().Property(f => f.Status).IsRequired();
         
         // User Context
-        builder.Entity<User>().HasKey(f => f.Id);
-        builder.Entity<User>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<User>().Property(f => f.Name).IsRequired();
-        builder.Entity<User>().Property(f => f.LastName).IsRequired();
-        builder.Entity<User>().Property(f => f.Email).IsRequired();
-        builder.Entity<User>().Property(f => f.Password).IsRequired();
-        builder.Entity<User>().Property(f => f.Type).IsRequired();
+        builder.Entity<Profile>().HasKey(f => f.Id);
+        builder.Entity<Profile>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Profile>().Property(f => f.Name).IsRequired();
+        builder.Entity<Profile>().Property(f => f.LastName).IsRequired();
+        builder.Entity<Profile>().Property(f => f.Email).IsRequired();
+        builder.Entity<Profile>().Property(f => f.Password).IsRequired();
+        builder.Entity<Profile>().Property(f => f.Type).IsRequired();
 
+        
         
         // Apply SnakeCase Naming Convention
         builder.UseSnakeCaseWithPluralizedTableNamingConvention();

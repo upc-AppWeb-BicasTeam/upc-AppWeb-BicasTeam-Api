@@ -1,3 +1,3 @@
-namespace BicasTeam.MoviGestion.API.Profiles.Interfaces.REST.Resources;
+﻿namespace BicasTeam.MoviGestion.API.Profiles.Interfaces.REST.Resources;
 
-public record CreateProfileResource(string FirstName, string LastName, string Email, string Street, string Number, string City, string PostalCode, string Country);
+public record CreateProfileResource(string Name, string LastName, string Email, string Password, string Type);

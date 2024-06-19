@@ -1,3 +1,3 @@
-namespace BicasTeam.MoviGestion.API.Profiles.Domain.Model.Queries;
+﻿namespace BicasTeam.MoviGestion.API.Profiles.Domain.Model.Queries;
 
 public record GetAllProfilesQuery();

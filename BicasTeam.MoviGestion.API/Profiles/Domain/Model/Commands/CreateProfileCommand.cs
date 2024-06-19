@@ -1,3 +1,4 @@
-namespace BicasTeam.MoviGestion.API.Profiles.Domain.Model.Commands;
+﻿namespace BicasTeam.MoviGestion.API.Profiles.Domain.Model.Commands;
 
-public record CreateProfileCommand(string FirstName, string LastName, string Email, string Street, string Number, string City, string PostalCode, string Country);
+public record CreateProfileCommand(string Name, string LastName, string Email, 
+    string Password, string Type);

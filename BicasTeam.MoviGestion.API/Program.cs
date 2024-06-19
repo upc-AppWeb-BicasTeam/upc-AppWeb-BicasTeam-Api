@@ -3,7 +3,9 @@ using BicasTeam.MoviGestion.API.Alerts.Application.Internal.QueryServices;
 using BicasTeam.MoviGestion.API.Alerts.Domain.Repositories;
 using BicasTeam.MoviGestion.API.Alerts.Domain.Services;
 using BicasTeam.MoviGestion.API.Alerts.Infrastructure.Persistence.EFC.Repositories;
+
 using BicasTeam.MoviGestion.API.IAM.Infrastructure.Pipeline.Middleware.Extensions;
+
 using BicasTeam.MoviGestion.API.Profiles.Application.Internal.CommandServices;
 using BicasTeam.MoviGestion.API.Profiles.Application.Internal.QueryServices;
 using BicasTeam.MoviGestion.API.Profiles.Domain.Repositories;
@@ -96,10 +98,10 @@ builder.Services.AddScoped<IShipmentRepository, ShipmentRepository>();
 builder.Services.AddScoped<IShipmentCommandService, ShipmentCommandService>();
 builder.Services.AddScoped<IShipmentQueryService, ShipmentQueryService>();
 
-// Users Bounded Context Injection Configuration
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IUserCommandService, UserCommandService>();
-builder.Services.AddScoped<IUserQueryService, UserQueryService>();
+// Profiles Bounded Context Injection Configuration
+builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+builder.Services.AddScoped<IProfileCommandService, ProfileCommandService>();
+builder.Services.AddScoped<IProfileQueryService, ProfileQueryService>();
 
 var app = builder.Build();
 
