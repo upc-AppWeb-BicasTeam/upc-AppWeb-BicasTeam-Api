@@ -1,5 +1,6 @@
 using BicasTeam.MoviGestion.API.Vehicles.Domain.Model.Aggregates;
 ﻿using BicasTeam.MoviGestion.API.Alerts.Domain.Model.Aggregates;
+using BicasTeam.MoviGestion.API.IAM.Domain.Model.Aggregates;
 using BicasTeam.MoviGestion.API.Shipments.Domain.Model.Aggregates;
 ﻿using BicasTeam.MoviGestion.API.Profiles.Domain.Model.Aggregates;
 using BicasTeam.MoviGestion.API.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
@@ -52,7 +53,11 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Profile>().Property(f => f.Password).IsRequired();
         builder.Entity<Profile>().Property(f => f.Type).IsRequired();
 
-        
+        // IAM Context
+        builder.Entity<User>().HasKey(u => u.Id);
+        builder.Entity<User>().Property(u => u.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<User>().Property(u => u.Username).IsRequired();
+        builder.Entity<User>().Property(u => u.PasswordHash).IsRequired();
         
         // Apply SnakeCase Naming Convention
         builder.UseSnakeCaseWithPluralizedTableNamingConvention();
