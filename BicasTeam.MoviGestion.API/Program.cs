@@ -72,7 +72,7 @@ builder.Services.AddSwaggerGen(
             Title   = "BicasTeam.MoviGestion.API",
             Version = "v1",
             Description = "BicasTeam MoviGestion Platform API",
-            TermsOfService = new Uri("https://acme-learning.com/tos"),
+            TermsOfService = new Uri("https://bicas-movigestion.com/tos"),
             Contact = new OpenApiContact{ Name = "Bicas Team MoviGestion", Email = "movigestion@bicas.com" },
             License = new OpenApiLicense { Name = "Apache 2.0", Url = new Uri("https://www.apache.org/licenses/LICENSE-2.0.html")},
         });
@@ -114,7 +114,16 @@ using (var scope = app.Services.CreateScope())
 }
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsProduction())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Production API");
+        options.RoutePrefix = string.Empty;
+    });
+}
+else
 {
     app.UseSwagger();
     app.UseSwaggerUI();
