@@ -82,6 +82,14 @@ builder.Services.AddSwaggerGen(
         });
     });
 
+// Add CORS Policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllPolicy", policy => policy.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+});
+
 // Configure Dependency Injection
 
 // Shared Bounded Context Injection Configuration
@@ -132,6 +140,9 @@ else
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Add CORS Middleware with AllowAllPolicy
+app.UseCors("AllowAllPolicy");
 
 app.UseHttpsRedirection();
 
