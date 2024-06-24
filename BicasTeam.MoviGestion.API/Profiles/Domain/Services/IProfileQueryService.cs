@@ -7,6 +7,6 @@ public interface IProfileQueryService
 {
     Task<Profile?> Handle(GetProfileByIdQuery query);
     Task<IEnumerable<Profile>> Handle(GetAllProfilesQuery query);
-    Task<Profile?> Handle(GetProfileByEmail query);
-    Task<Profile?> Handle(GetProfileByEmailAndPassword query);
+    Task<Profile?> Handle(GetProfileByEmailQuery query);
+    Task<Profile?> Handle(GetProfileByEmailAndPasswordQuery query);
 }

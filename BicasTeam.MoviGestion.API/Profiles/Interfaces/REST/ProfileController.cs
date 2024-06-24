@@ -44,17 +44,17 @@ public class ProfileController(
     [HttpGet("email/{email}")]
     public async Task<ActionResult> GetProfileByEmail(string email)
     {
-        var getProfileByEmailQuery = new GetProfileByEmail(email);
+        var getProfileByEmailQuery = new GetProfileByEmailQuery(email);
         var result = await profileQueryService.Handle(getProfileByEmailQuery);
         if (result is null) return NotFound();
         var resource = ProfileResourceFromEntityAssembler.ToResourceFromEntity(result);
         return Ok(resource);
     }
-
+    
     [HttpGet("email/{email}/password/{password}")]
     public async Task<ActionResult> GetProfileByEmailAndPassword(string email, string password)
     {
-        var getProfileByEmailAndPasswordQuery = new GetProfileByEmailAndPassword(email, password);
+        var getProfileByEmailAndPasswordQuery = new GetProfileByEmailAndPasswordQuery(email, password);
         var result = await profileQueryService.Handle(getProfileByEmailAndPasswordQuery);
         if (result is null) return NotFound();
         var resource = ProfileResourceFromEntityAssembler.ToResourceFromEntity(result);

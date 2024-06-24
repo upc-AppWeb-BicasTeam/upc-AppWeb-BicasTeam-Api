@@ -3,7 +3,11 @@ using BicasTeam.MoviGestion.API.Alerts.Application.Internal.QueryServices;
 using BicasTeam.MoviGestion.API.Alerts.Domain.Repositories;
 using BicasTeam.MoviGestion.API.Alerts.Domain.Services;
 using BicasTeam.MoviGestion.API.Alerts.Infrastructure.Persistence.EFC.Repositories;
-
+using BicasTeam.MoviGestion.API.IAM.Application.Internal.CommandServices;
+using BicasTeam.MoviGestion.API.IAM.Application.Internal.QueryServices;
+using BicasTeam.MoviGestion.API.IAM.Domain.Repositories;
+using BicasTeam.MoviGestion.API.IAM.Domain.Services;
+using BicasTeam.MoviGestion.API.IAM.Infrastructure.Persistence.EFC.Repositories;
 using BicasTeam.MoviGestion.API.IAM.Infrastructure.Pipeline.Middleware.Extensions;
 
 using BicasTeam.MoviGestion.API.Profiles.Application.Internal.CommandServices;
@@ -128,8 +132,6 @@ else
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseRequestAuthorization();
 
 app.UseHttpsRedirection();
 
