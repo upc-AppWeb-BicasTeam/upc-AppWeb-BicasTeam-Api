@@ -40,4 +40,24 @@ public class ProfileController(
         var resources = profiles.Select(ProfileResourceFromEntityAssembler.ToResourceFromEntity);
         return Ok(resources);
     }
+    
+    [HttpGet("email/{email}")]
+    public async Task<ActionResult> GetProfileByEmail(string email)
+    {
+        var getProfileByEmailQuery = new GetProfileByEmail(email);
+        var result = await profileQueryService.Handle(getProfileByEmailQuery);
+        if (result is null) return NotFound();
+        var resource = ProfileResourceFromEntityAssembler.ToResourceFromEntity(result);
+        return Ok(resource);
+    }
+
+    [HttpGet("email/{email}/password/{password}")]
+    public async Task<ActionResult> GetProfileByEmailAndPassword(string email, string password)
+    {
+        var getProfileByEmailAndPasswordQuery = new GetProfileByEmailAndPassword(email, password);
+        var result = await profileQueryService.Handle(getProfileByEmailAndPasswordQuery);
+        if (result is null) return NotFound();
+        var resource = ProfileResourceFromEntityAssembler.ToResourceFromEntity(result);
+        return Ok(resource);
+    }
 }

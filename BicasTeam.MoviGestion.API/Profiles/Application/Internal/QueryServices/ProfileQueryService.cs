@@ -16,4 +16,14 @@ public class ProfileQueryService(IProfileRepository profileRepository) : IProfil
     {
         return await profileRepository.ListAsync();
     }
+
+    public Task<Profile?> Handle(GetProfileByEmail query)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Profile?> Handle(GetProfileByEmailAndPassword query)
+    {
+        throw new NotImplementedException();
+    }
 }
