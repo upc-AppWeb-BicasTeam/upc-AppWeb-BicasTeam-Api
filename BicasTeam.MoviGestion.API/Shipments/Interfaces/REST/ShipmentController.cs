@@ -16,6 +16,7 @@ public class ShipmentController(
     [HttpPost]
     public async Task<ActionResult> CreateShipment([FromBody] CreateShipmentResource resource)
     {
+
         var createShipmentCommand = CreateShipmentCommandFromResourceAssembler.ToCommandFromResource(resource);
         var result = await shipmentCommandService.Handle(createShipmentCommand);
         if (result is null) return BadRequest();

@@ -1,15 +1,19 @@
+using System.Text;
 using BicasTeam.MoviGestion.API.Alerts.Application.Internal.CommandServices;
 using BicasTeam.MoviGestion.API.Alerts.Application.Internal.QueryServices;
 using BicasTeam.MoviGestion.API.Alerts.Domain.Repositories;
 using BicasTeam.MoviGestion.API.Alerts.Domain.Services;
 using BicasTeam.MoviGestion.API.Alerts.Infrastructure.Persistence.EFC.Repositories;
 using BicasTeam.MoviGestion.API.IAM.Application.Internal.CommandServices;
+using BicasTeam.MoviGestion.API.IAM.Application.Internal.OutboundServices;
 using BicasTeam.MoviGestion.API.IAM.Application.Internal.QueryServices;
 using BicasTeam.MoviGestion.API.IAM.Domain.Repositories;
 using BicasTeam.MoviGestion.API.IAM.Domain.Services;
+using BicasTeam.MoviGestion.API.IAM.Infrastructure.Hashing.BCrypt.Services;
 using BicasTeam.MoviGestion.API.IAM.Infrastructure.Persistence.EFC.Repositories;
 using BicasTeam.MoviGestion.API.IAM.Infrastructure.Pipeline.Middleware.Extensions;
-
+using BicasTeam.MoviGestion.API.IAM.Infrastructure.Tokens.JWT.Configuration;
+using BicasTeam.MoviGestion.API.IAM.Infrastructure.Tokens.JWT.Services;
 using BicasTeam.MoviGestion.API.Profiles.Application.Internal.CommandServices;
 using BicasTeam.MoviGestion.API.Profiles.Application.Internal.QueryServices;
 using BicasTeam.MoviGestion.API.Profiles.Domain.Repositories;
@@ -32,8 +36,9 @@ using BicasTeam.MoviGestion.API.Shipments.Application.Internal.QueryServices;
 using BicasTeam.MoviGestion.API.Shipments.Domain.Repositories;
 using BicasTeam.MoviGestion.API.Shipments.Domain.Services;
 using BicasTeam.MoviGestion.API.Shipments.Infrastructure.Persistence.EFC.Repositories;
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -90,6 +95,32 @@ builder.Services.AddCors(options =>
         .AllowAnyHeader());
 });
 
+
+
+// Configurar JWT Authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        var tokenSettings = builder.Configuration.GetSection("TokenSettings").Get<TokenSettings>();
+
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = tokenSettings.Issuer,
+            ValidAudience = tokenSettings.Audience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenSettings.Secret)),
+            ClockSkew = TimeSpan.Zero  // Sin tolerancia de tiempo
+        };
+    });
+
+
+
+// Agregar configuración para TokenSettings
+builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection("TokenSettings"));
+
 // Configure Dependency Injection
 
 // Shared Bounded Context Injection Configuration
@@ -114,6 +145,18 @@ builder.Services.AddScoped<IShipmentQueryService, ShipmentQueryService>();
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder.Services.AddScoped<IProfileCommandService, ProfileCommandService>();
 builder.Services.AddScoped<IProfileQueryService, ProfileQueryService>();
+
+// IAM Bounded Context Injection Configuration
+builder.Services.AddScoped<IUserQueryService, UserQueryService>();
+
+builder.Services.AddScoped<IHashingService, HashingService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>(); 
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IUserCommandService, UserCommandService>();
+
+
+
+
 
 var app = builder.Build();
 
@@ -146,6 +189,7 @@ app.UseCors("AllowAllPolicy");
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();  
 app.UseAuthorization();
 
 app.MapControllers();

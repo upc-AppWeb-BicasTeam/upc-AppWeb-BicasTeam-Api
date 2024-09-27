@@ -31,5 +31,4 @@ public class AuthenticationController(IUserCommandService userCommandService) : 
         var authenticatedUserResource = AuthenticatedUserResourceFromEntityAssembler.ToResourceFromEntity(authenticatedUser.user, authenticatedUser.token);
         return Ok(authenticatedUserResource);
     }
-    
 }
