@@ -97,29 +97,7 @@ builder.Services.AddCors(options =>
 
 
 
-// Configurar JWT Authentication
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        var tokenSettings = builder.Configuration.GetSection("TokenSettings").Get<TokenSettings>();
 
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = tokenSettings.Issuer,
-            ValidAudience = tokenSettings.Audience,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenSettings.Secret)),
-            ClockSkew = TimeSpan.Zero  // Sin tolerancia de tiempo
-        };
-    });
-
-
-
-// Agregar configuración para TokenSettings
-builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection("TokenSettings"));
 
 // Configure Dependency Injection
 
@@ -145,16 +123,6 @@ builder.Services.AddScoped<IShipmentQueryService, ShipmentQueryService>();
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder.Services.AddScoped<IProfileCommandService, ProfileCommandService>();
 builder.Services.AddScoped<IProfileQueryService, ProfileQueryService>();
-
-// IAM Bounded Context Injection Configuration
-builder.Services.AddScoped<IUserQueryService, UserQueryService>();
-
-builder.Services.AddScoped<IHashingService, HashingService>();
-builder.Services.AddScoped<IUserRepository, UserRepository>(); 
-builder.Services.AddScoped<ITokenService, TokenService>();
-builder.Services.AddScoped<IUserCommandService, UserCommandService>();
-
-
 
 
 
@@ -189,7 +157,6 @@ app.UseCors("AllowAllPolicy");
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();  
 app.UseAuthorization();
 
 app.MapControllers();
