@@ -5,6 +5,7 @@ namespace BicasTeam.MoviGestion.API.Vehicles.Interfaces.REST.Transform;
 
 public class VehicleResourceFromEntityAssembler
 {
-    public static VehicleResource ToResourceFromEntity(Vehicle entity) => new VehicleResource(entity.Id, entity.LicensePlate,
-        entity.Model, entity.SerialNumber);
+    public static VehicleResource ToResourceFromEntity(Vehicle entity) => 
+        new(entity.Id, entity.LicensePlate, entity.Model, entity.SerialNumber, entity.IdPropietario, entity.IdTransportista);
+
 }

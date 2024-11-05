@@ -6,5 +6,6 @@ namespace BicasTeam.MoviGestion.API.Vehicles.Interfaces.REST.Transform;
 public static class CreateVehicleCommandFromResourceAssembler
 {
     public static CreateVehicleCommand ToCommandFromResource(CreateVehicleResource resource) => 
-        new(resource.LicensePlate, resource.Model, resource.SerialNumber);
+        new(resource.LicensePlate, resource.Model, resource.SerialNumber, resource.IdPropietario, resource.IdTransportista);
+
 }
