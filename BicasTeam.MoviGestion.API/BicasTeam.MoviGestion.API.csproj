@@ -12,7 +12,6 @@
         <!-- Entity Framework Core related packages -->
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.4"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6"/>
         <!-- MySQL Database persistence related packages -->
         <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.2"/>
         <!-- Audit Trail related packages -->

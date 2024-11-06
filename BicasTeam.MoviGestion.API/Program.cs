@@ -48,19 +48,20 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 // Configure Database Context and Logging Levels
 
-builder.Services.AddDbContext<AppDbContext>(options =>
+
+if (builder.Environment.IsDevelopment())
 {
-    if (connectionString == null) return;
-    if (builder.Environment.IsDevelopment()) 
+    builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseMySQL(connectionString)
-            .LogTo(Console.WriteLine, LogLevel.Information)
-            .EnableSensitiveDataLogging()
-            .EnableDetailedErrors();
-    else if (builder.Environment.IsProduction()) 
-        options.UseMySQL(connectionString)
-            .LogTo(Console.WriteLine, LogLevel.Error)
-            .EnableDetailedErrors();
-}); 
+            .EnableSensitiveDataLogging()  // Only in development
+            .EnableDetailedErrors());
+}
+else
+{
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseMySQL(connectionString));
+}
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
